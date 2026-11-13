@@ -125,6 +125,28 @@ class WorkbenchTest(unittest.TestCase):
         with patch.object(server,'API_KEY',''):
             with self.assertRaises(ValueError):server.cloud(path)
 
+    def test_tokenhub_payload_and_errors(self):
+        path=server.DATA/'tokenhub.png';path.write_bytes(PNG)
+        response={'choices':[{'message':{'content':json.dumps(dict(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['路侧标志'],uncertainties=['需人工核对']))}}]}
+        def fake(req,timeout):
+            body=json.loads(req.data)
+            self.assertEqual(req.full_url,'https://tokenhub.tencentmaas.com/v1/chat/completions')
+            self.assertEqual(body['model'],'hy-vision-2.0-instruct')
+            self.assertNotIn('provider',body)
+            self.assertEqual(req.get_header('Authorization'),'Bearer test-tokenhub-only')
+            self.assertFalse(body['stream'])
+            uri=body['messages'][0]['content'][1]['image_url']['url']
+            self.assertEqual(base64.b64decode(uri.split(',',1)[1]),PNG)
+            return io.BytesIO(json.dumps(response).encode())
+        with patch.object(server,'PROVIDER','tokenhub'),patch.object(server,'TOKENHUB_KEY','test-tokenhub-only'):
+            with patch.object(server.urllib.request,'urlopen',fake):
+                self.assertEqual(server.cloud(path)['category'],'candidate')
+            with patch.object(server.urllib.request,'urlopen',side_effect=urllib.error.HTTPError('https://example.invalid',401,'secret',{},None)):
+                with self.assertRaisesRegex(RuntimeError,'密钥无效') as cm:server.cloud(path)
+                self.assertNotIn('test-tokenhub-only',str(cm.exception))
+            with patch.object(server,'TOKENHUB_KEY',''):
+                with self.assertRaisesRegex(ValueError,'未配置腾讯云'):server.cloud(path)
+
     def test_reject_invalid_upload_and_unfinished_review(self):
         with self.assertRaises(urllib.error.HTTPError) as cm:
             self.call('/api/import',{'name':'fake.png','batch':'week','data':base64.b64encode(b'not image').decode()})

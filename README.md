@@ -1,3 +1,7 @@
+# 腾讯云图片识别
+
+Render现默认使用腾讯云 TokenHub。请按 [TOKENHUB.md](TOKENHUB.md) 配置 `TOKENHUB_API_KEY`；未配置仍可使用12张模拟样例。原 OpenRouter 与本地 Ollama 模式继续保留。
+
 # 在线部署
 
 [一键配置 Render 服务](https://render.com/deploy?repo=https://github.com/duoduohappy/curb-review)

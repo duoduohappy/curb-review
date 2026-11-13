@@ -5,7 +5,7 @@
 <section class="banner"><div><b>先筛证据，再做判断</b><p>系统筛查可见的禁停标志、路侧标线及车辆关系。候选结果需人工复核，单张图片无法确认停车时长。</p></div><span>辅助筛选</span></section>
 <section class="stats" id="stats"></section>
 <section class="import-panel"><div class="upload-icon">＋</div><div><h3>导入本周新图片</h3><p>支持多选 JPG / PNG / WEBP · 单张 ≤ 12 MB · SHA-256 跨批次精确去重</p></div><input aria-label="批次名称" id="batch" placeholder="批次名称"><button id="upload" class="button primary">选择图片</button><input hidden multiple accept="image/jpeg,image/png,image/webp" type="file" id="files"></section>
-<div id="cloudNotice" class="banner" hidden><div><b>在线试用 · 临时数据</b><p>上传与复核按浏览器会话隔离；免费服务重启后数据可能丢失，请及时导出。</p><label><input type="checkbox" id="cloudConsent"> 我同意将本批上传图片发送至 OpenRouter 及其模型提供商进行分析。</label></div></div>
+<div id="cloudNotice" class="banner" hidden><div><b>在线试用 · 临时数据</b><p>上传与复核按浏览器会话隔离；免费服务重启后数据可能丢失，请及时导出。</p><label><input type="checkbox" id="cloudConsent"> <span id="consentText">我同意将本批上传图片发送至当前云端模型提供商进行分析。</span></label></div></div>
 <div class="demo-bar"><span>没有道路样本？用 12 张合成示意图演示审核流程。<b>预设结果，不代表识别效果。</b></span><button id="demo">加载流程演示 ↗</button></div>
 <section class="toolbar"><div id="filters"><button data-filter="all" class="selected">全部图片</button><button data-filter="candidate">证据候选</button><button data-filter="uncertain">待判断</button><button data-filter="none">未发现线索</button><button data-filter="failed">分析失败</button></div><div class="search"><select aria-label="批次筛选" id="batchFilter"><option value="">全部批次</option></select><input id="search" aria-label="搜索文件名" placeholder="搜索文件名…"></div></section>
 <div class="list-meta"><span id="count"></span><span>筛选分类 ≠ 违停认定</span></div><section class="grid" id="grid"></section>

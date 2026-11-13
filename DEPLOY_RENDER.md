@@ -1,3 +1,5 @@
+> 更新：Render Blueprint 默认提供商已改为 `tokenhub`。腾讯云配置请以 [TOKENHUB.md](TOKENHUB.md) 为准；下方 OpenRouter 设置仅适用于主动切换 AI_PROVIDER=openrouter 的情况。
+
 # GitHub → Render 在线演示
 
 本项目已适配 Render Web Service：监听 0.0.0.0:$PORT，自动加载模拟数据，支持 HTTPS 下的上传与复核。对方只需浏览器，无需安装 Python 或 Ollama。

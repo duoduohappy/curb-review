@@ -10,7 +10,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: AI_PROVIDER
-        value: openrouter
+        value: tokenhub
       - key: PUBLIC_DEMO
         value: "1"
       - key: OPENROUTER_MODEL
