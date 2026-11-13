@@ -1,12 +1,16 @@
+# 当前演示界面
+
+默认展示10张公开许可的真实照片，附带来源和许可链接；分析说明为预设演示，非实时推理。旧版合成示例不再显示，真实上传和复核记录保留。新增上传/分析进度蒙版，可切换后台；页面与导出统一使用“视觉模型”，上传仍需同意云端处理。
+
 # 腾讯云图片识别
 
-Render现默认使用腾讯云 TokenHub。请按 [TOKENHUB.md](TOKENHUB.md) 配置 `TOKENHUB_API_KEY`；未配置仍可使用12张模拟样例。原 OpenRouter 与本地 Ollama 模式继续保留。
+Render现默认使用腾讯云 TokenHub。请按 [TOKENHUB.md](TOKENHUB.md) 配置 `TOKENHUB_API_KEY`；未配置仍可使用10张模拟样例。原 OpenRouter 与本地 Ollama 模式继续保留。
 
 # 在线部署
 
 [一键配置 Render 服务](https://render.com/deploy?repo=https://github.com/duoduohappy/curb-review)
 
-GitHub → Render 的操作见 [DEPLOY_RENDER.md](DEPLOY_RENDER.md)。Render 版本支持免费云端接口和访客会话隔离；默认不含密钥，可直接体验12张预设样例。
+GitHub → Render 的操作见 [DEPLOY_RENDER.md](DEPLOY_RENDER.md)。Render 版本支持免费云端接口和访客会话隔离；默认不含密钥，可直接体验10张预设样例。
 
 # 路证 / Curb Review
 
@@ -18,7 +22,7 @@ GitHub → Render 的操作见 [DEPLOY_RENDER.md](DEPLOY_RENDER.md)。Render 版
 
 ## 无模型演示（立即可用）
 
-1. 点击“加载流程演示”，生成 12 张合成道路示意图。
+1. 点击“加载流程演示”，生成 10 张合成道路示意图。
 2. 切换“证据候选 / 待判断 / 未发现线索”，打开图片查看证据说明。
 3. 选择“证据可用 / 排除 / 仍需补充材料”，输入备注并保存。
 4. 切换“待人工复核”，查看尚未审核的记录；点击“导出全部记录”，可用 Excel 打开 CSV。
@@ -56,7 +60,7 @@ GitHub → Render 的操作见 [DEPLOY_RENDER.md](DEPLOY_RENDER.md)。Render 版
 
 ## 模拟数据包
 
-首次使用空数据库启动会自动加载 12 张模拟样例。已有数据库可点击“加载流程演示”。包含两周的 PNG 上传文件和预设答案，详见 `samples/README.md`。应用运行不需要 Pillow；仅重新生成程序绘制图片时才需 Pillow。
+首次使用空数据库启动会自动加载 10 张模拟样例。已有数据库可点击“加载流程演示”。包含两周的 PNG 上传文件和预设答案，详见 `samples/README.md`。应用运行不需要 Pillow；仅重新生成程序绘制图片时才需 Pillow。
 
 ## 证据一致性校验
 

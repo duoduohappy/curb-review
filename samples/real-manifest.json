@@ -1,0 +1,302 @@
+[
+  {
+    "filename": "photo-01.jpg",
+    "name": "限制停车标志与货车",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "6b7bd046a4ee80ec8b17c8249570c3f3317365df9bdc047c1bd2f4b349bed872",
+    "source": {
+      "filename": "photo-01.jpg",
+      "title": "File:Arm-mounted parking sign (42111541462).jpg",
+      "author": "Eric Fischer",
+      "source": "https://commons.wikimedia.org/wiki/File:Arm-mounted_parking_sign_(42111541462).jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/4/40/Arm-mounted_parking_sign_%2842111541462%29.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "size_bytes": 2293166,
+      "sha256": "6b7bd046a4ee80ec8b17c8249570c3f3317365df9bdc047c1bd2f4b349bed872",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "unclear",
+      "evidence": [
+        "画面上方可见圆形限制停车标志及附加时段牌，下方有货车。"
+      ],
+      "uncertainties": [
+        "需核对附加时段和货车是否处于标志适用范围。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-02.jpg",
+    "name": "街道货车与路侧线条",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "82eea512157861d12bea02d0e69a48dd1fc6890c73a779aa37709d58aaed98c9",
+    "source": {
+      "filename": "photo-02.jpg",
+      "title": "File:Badly parked lorries in Knaphill High Street.JPG",
+      "author": "Arriva436",
+      "source": "https://commons.wikimedia.org/wiki/File:Badly_parked_lorries_in_Knaphill_High_Street.JPG",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Badly_parked_lorries_in_Knaphill_High_Street.JPG",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "size_bytes": 3290916,
+      "sha256": "82eea512157861d12bea02d0e69a48dd1fc6890c73a779aa37709d58aaed98c9",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "yes",
+      "relation": "unclear",
+      "evidence": [
+        "街道中有货车与小汽车，路侧可见线条。"
+      ],
+      "uncertainties": [
+        "标牌较远，不能确认其是否为禁停标志。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-03.jpg",
+    "name": "停车位中的小汽车",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "2184a09a8e355f1a6a94fa602166c5b27d366590b01cb7c6b3b40aeb6330e52a",
+    "source": {
+      "filename": "photo-03.jpg",
+      "title": "File:Blue smart car illegally parked.jpeg",
+      "author": "User:Alicegop",
+      "source": "https://commons.wikimedia.org/wiki/File:Blue_smart_car_illegally_parked.jpeg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Blue_smart_car_illegally_parked.jpeg",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "size_bytes": 1087704,
+      "sha256": "2184a09a8e355f1a6a94fa602166c5b27d366590b01cb7c6b3b40aeb6330e52a",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "no",
+      "relation": "unclear",
+      "evidence": [
+        "小汽车旁可见停车计时设施及停车区域。"
+      ],
+      "uncertainties": [
+        "一般停车设施不能作为禁停证据；需核对实际停车范围。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-04.jpg",
+    "name": "路缘黄线与汽车",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "0623e5c828f57e2b37b48fe2cf7e5346c127b12ca1ef10dff4115e05b059b078",
+    "source": {
+      "filename": "photo-04.jpg",
+      "title": "File:Bouverie Road - Hackney paints it wrong.jpg",
+      "author": "Alan Stanton",
+      "source": "https://commons.wikimedia.org/wiki/File:Bouverie_Road_-_Hackney_paints_it_wrong.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/2/27/Bouverie_Road_-_Hackney_paints_it_wrong.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "size_bytes": 1962372,
+      "sha256": "0623e5c828f57e2b37b48fe2cf7e5346c127b12ca1ef10dff4115e05b059b078",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "yes",
+      "relation": "yes",
+      "evidence": [
+        "路缘可见黄色线条，汽车位于相邻路侧。"
+      ],
+      "uncertainties": [
+        "无法确认远处标牌的内容及黄色线条的适用规则。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-05.jpg",
+    "name": "多车街景与黄色路缘线",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "c634021a751eaf5ea1839011881492aa77427ad431fcf612ddcfaf0ffc07f672",
+    "source": {
+      "filename": "photo-05.jpg",
+      "title": "File:Cars parked on double yellow lines - geograph.org.uk - 3890725.jpg",
+      "author": "Rose and Trev Clough",
+      "source": "https://commons.wikimedia.org/wiki/File:Cars_parked_on_double_yellow_lines_-_geograph.org.uk_-_3890725.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cars_parked_on_double_yellow_lines_-_geograph.org.uk_-_3890725.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "size_bytes": 382996,
+      "sha256": "c634021a751eaf5ea1839011881492aa77427ad431fcf612ddcfaf0ffc07f672",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "yes",
+      "relation": "yes",
+      "evidence": [
+        "多辆车位于两侧路缘附近，路侧有黄色线条。"
+      ],
+      "uncertainties": [
+        "需逐车核实所在位置，不能仅凭黄线认定违停。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-06.jpg",
+    "name": "低分辨率街景",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "28ec93fcdb63e868495cb8cee608387b7d7c468c3261a7b2159b9b8da54deb3a",
+    "source": {
+      "filename": "photo-06.jpg",
+      "title": "File:Market St - so much for double yellow lines^ - geograph.org.uk - 821177.jpg",
+      "author": "Row17",
+      "source": "https://commons.wikimedia.org/wiki/File:Market_St_-_so_much_for_double_yellow_lines%5E_-_geograph.org.uk_-_821177.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Market_St_-_so_much_for_double_yellow_lines%5E_-_geograph.org.uk_-_821177.jpg",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "size_bytes": 69773,
+      "sha256": "28ec93fcdb63e868495cb8cee608387b7d7c468c3261a7b2159b9b8da54deb3a",
+      "changes": "Original photograph, unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "yes",
+      "relation": "unclear",
+      "evidence": [
+        "街道中有多辆车，路缘附近能观察到黄色线条。"
+      ],
+      "uncertainties": [
+        "图片较小，标志内容和精确空间关系不清晰。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-07.jpg",
+    "name": "NO PARKING文字障碍物",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "89eb65a3c75c6885a0b556f480c11fa61cf9934b3e33c9af12821b8883755f47",
+    "source": {
+      "filename": "photo-07.jpg",
+      "title": "File:No Parking on 55th Street 01.jpg",
+      "author": "Kritzolina",
+      "source": "https://commons.wikimedia.org/wiki/File:No_Parking_on_55th_Street_01.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_Parking_on_55th_Street_01.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "size_bytes": 292889,
+      "sha256": "89eb65a3c75c6885a0b556f480c11fa61cf9934b3e33c9af12821b8883755f47",
+      "changes": "Wikimedia 1280px thumbnail, content unchanged"
+    },
+    "result": {
+      "vehicle": "no",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "no",
+      "evidence": [
+        "障碍物上可读到NO PARKING文字，图中没有清晰车辆。"
+      ],
+      "uncertainties": [
+        "文字设置的效力与适用范围不能从单图确认。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-08.jpg",
+    "name": "多种文字限制牌",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "47aef021d4bd1b7f25e648384385535b6868b45ad3193247720a28d94fa4f124",
+    "source": {
+      "filename": "photo-08.jpg",
+      "title": "File:No parking, street cleaning, no peddling (38657308072).jpg",
+      "author": "Eric Fischer",
+      "source": "https://commons.wikimedia.org/wiki/File:No_parking,_street_cleaning,_no_peddling_(38657308072).jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/e/e3/No_parking%2C_street_cleaning%2C_no_peddling_%2838657308072%29.jpg",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "size_bytes": 359462,
+      "sha256": "47aef021d4bd1b7f25e648384385535b6868b45ad3193247720a28d94fa4f124",
+      "changes": "Wikimedia 1280px thumbnail, content unchanged"
+    },
+    "result": {
+      "vehicle": "unclear",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "unclear",
+      "evidence": [
+        "路灯杆上有含NO PARKING字样的时段限制牌。"
+      ],
+      "uncertainties": [
+        "部分车辆或路面位于画面边缘，需核对时段及对应范围。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-09.jpg",
+    "name": "带贴纸的限制标志近景",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "d044b53a91194a7f9bbc83614cddfe6cd5f43f2c96e76196a510b8fc33e825c1",
+    "source": {
+      "filename": "photo-09.jpg",
+      "title": "File:Rome (Italy), Sign -- 2013 -- 8.jpg",
+      "author": "Dietmar Rabich",
+      "source": "https://commons.wikimedia.org/wiki/File:Rome_(Italy),_Sign_--_2013_--_8.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rome_%28Italy%29%2C_Sign_--_2013_--_8.jpg",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "size_bytes": 431177,
+      "sha256": "d044b53a91194a7f9bbc83614cddfe6cd5f43f2c96e76196a510b8fc33e825c1",
+      "changes": "Wikimedia 1280px thumbnail, content unchanged"
+    },
+    "result": {
+      "vehicle": "no",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "no",
+      "evidence": [
+        "圆形红蓝交叉标志带有贴纸，画面无车辆。"
+      ],
+      "uncertainties": [
+        "需核对标志原意和现场条件；无车辆不能形成车辆候选证据。"
+      ]
+    }
+  },
+  {
+    "filename": "photo-10.jpg",
+    "name": "车窗视角的道路与巴士",
+    "batch": "真实照片 · 预设演示",
+    "sha256": "7e91246a48dcaa188e762e934d5855325d7a9b9ce9f558ba047ef490441f38f1",
+    "source": {
+      "filename": "photo-10.jpg",
+      "title": "File:Shanklin High Street from Southern Vectis route 3 bus.JPG",
+      "author": "Arriva436",
+      "source": "https://commons.wikimedia.org/wiki/File:Shanklin_High_Street_from_Southern_Vectis_route_3_bus.JPG",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Shanklin_High_Street_from_Southern_Vectis_route_3_bus.JPG",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "size_bytes": 302715,
+      "sha256": "7e91246a48dcaa188e762e934d5855325d7a9b9ce9f558ba047ef490441f38f1",
+      "changes": "Wikimedia 1280px thumbnail, content unchanged"
+    },
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "yes",
+      "relation": "unclear",
+      "evidence": [
+        "前方有巴士，路侧有黄色线条，车窗横杆遮挡部分视线。"
+      ],
+      "uncertainties": [
+        "标志内容和车辆对应的路段范围不清晰。"
+      ]
+    }
+  }
+]

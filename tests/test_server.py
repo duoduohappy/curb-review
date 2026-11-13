@@ -55,12 +55,12 @@ class WorkbenchTest(unittest.TestCase):
         self.call('/api/demo',{})
         self.call('/api/demo',{})
         items = self.call('/api/items')
-        self.assertEqual(len(items),12)
+        self.assertEqual(len(items),10)
         self.assertTrue(all(x['demo']==1 for x in items))
         for item in items:
             with urllib.request.urlopen(self.url+'/image/'+str(item['id'])) as r:
-                self.assertEqual(r.headers['Content-Type'],'image/png')
-                self.assertTrue(r.read().startswith(b'\x89PNG'))
+                self.assertEqual(r.headers['Content-Type'],'image/jpeg')
+                self.assertTrue(r.read().startswith(b'\xff\xd8'))
         selected = items[0]['id']
         self.call('/api/review',{'id':selected,'review':'confirmed','note':'=not-a-formula'})
         server.init()
@@ -133,8 +133,8 @@ class WorkbenchTest(unittest.TestCase):
             with client.open(req) as r:return json.load(r)
         try:
             a=get(first,'/api/items');b=get(second,'/api/items')
-            self.assertEqual(len(a),12)
-            self.assertEqual(len(b),12)
+            self.assertEqual(len(a),10)
+            self.assertEqual(len(b),10)
             self.assertTrue(set(x['id'] for x in a).isdisjoint(x['id'] for x in b))
             post(first,'/api/review',{'id':a[0]['id'],'review':'confirmed','note':'private'})
             with self.assertRaises(urllib.error.HTTPError):
@@ -181,7 +181,7 @@ class WorkbenchTest(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError,'密钥无效') as cm:server.cloud(path)
                 self.assertNotIn('test-tokenhub-only',str(cm.exception))
             with patch.object(server,'TOKENHUB_KEY',''):
-                with self.assertRaisesRegex(ValueError,'未配置腾讯云'):server.cloud(path)
+                with self.assertRaisesRegex(ValueError,'视觉模型尚未配置'):server.cloud(path)
 
     def test_reject_invalid_upload_and_unfinished_review(self):
         with self.assertRaises(urllib.error.HTTPError) as cm:

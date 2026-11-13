@@ -1,0 +1,76 @@
+10 REAL PHOTOGRAPHS FOR BATCH UPLOAD TESTING
+Downloaded from Wikimedia Commons; six originals and four Wikimedia-resized 1280px versions. No scene content was altered.
+These are foreign street scenes, not a verified Chinese parking violation benchmark.
+File titles describe the source but are not ground-truth violation labels.
+Select photo-01.jpg through photo-10.jpg only when uploading.
+10 distinct SHA-256 hashes; none is the earlier real-parking-test.jpg.
+
+photo-01.jpg
+File:Arm-mounted parking sign (42111541462).jpg
+Author: Eric Fischer
+Source: https://commons.wikimedia.org/wiki/File:Arm-mounted_parking_sign_(42111541462).jpg
+License: CC BY 2.0 https://creativecommons.org/licenses/by/2.0
+Changes: Original photograph, unchanged
+
+photo-02.jpg
+File:Badly parked lorries in Knaphill High Street.JPG
+Author: Arriva436
+Source: https://commons.wikimedia.org/wiki/File:Badly_parked_lorries_in_Knaphill_High_Street.JPG
+License: CC BY 3.0 https://creativecommons.org/licenses/by/3.0
+Changes: Original photograph, unchanged
+
+photo-03.jpg
+File:Blue smart car illegally parked.jpeg
+Author: User:Alicegop
+Source: https://commons.wikimedia.org/wiki/File:Blue_smart_car_illegally_parked.jpeg
+License: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0
+Changes: Original photograph, unchanged
+
+photo-04.jpg
+File:Bouverie Road - Hackney paints it wrong.jpg
+Author: Alan Stanton
+Source: https://commons.wikimedia.org/wiki/File:Bouverie_Road_-_Hackney_paints_it_wrong.jpg
+License: CC BY-SA 2.0 https://creativecommons.org/licenses/by-sa/2.0
+Changes: Original photograph, unchanged
+
+photo-05.jpg
+File:Cars parked on double yellow lines - geograph.org.uk - 3890725.jpg
+Author: Rose and Trev Clough
+Source: https://commons.wikimedia.org/wiki/File:Cars_parked_on_double_yellow_lines_-_geograph.org.uk_-_3890725.jpg
+License: CC BY-SA 2.0 https://creativecommons.org/licenses/by-sa/2.0
+Changes: Original photograph, unchanged
+
+photo-06.jpg
+File:Market St - so much for double yellow lines^ - geograph.org.uk - 821177.jpg
+Author: Row17
+Source: https://commons.wikimedia.org/wiki/File:Market_St_-_so_much_for_double_yellow_lines%5E_-_geograph.org.uk_-_821177.jpg
+License: CC BY-SA 2.0 https://creativecommons.org/licenses/by-sa/2.0
+Changes: Original photograph, unchanged
+
+photo-07.jpg
+File:No Parking on 55th Street 01.jpg
+Author: Kritzolina
+Source: https://commons.wikimedia.org/wiki/File:No_Parking_on_55th_Street_01.jpg
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0
+Changes: Wikimedia 1280px thumbnail, content unchanged
+
+photo-08.jpg
+File:No parking, street cleaning, no peddling (38657308072).jpg
+Author: Eric Fischer
+Source: https://commons.wikimedia.org/wiki/File:No_parking,_street_cleaning,_no_peddling_(38657308072).jpg
+License: CC BY 2.0 https://creativecommons.org/licenses/by/2.0
+Changes: Wikimedia 1280px thumbnail, content unchanged
+
+photo-09.jpg
+File:Rome (Italy), Sign -- 2013 -- 8.jpg
+Author: Dietmar Rabich
+Source: https://commons.wikimedia.org/wiki/File:Rome_(Italy),_Sign_--_2013_--_8.jpg
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0
+Changes: Wikimedia 1280px thumbnail, content unchanged
+
+photo-10.jpg
+File:Shanklin High Street from Southern Vectis route 3 bus.JPG
+Author: Arriva436
+Source: https://commons.wikimedia.org/wiki/File:Shanklin_High_Street_from_Southern_Vectis_route_3_bus.JPG
+License: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0
+Changes: Wikimedia 1280px thumbnail, content unchanged

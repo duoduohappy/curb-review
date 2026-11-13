@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const WorkProgress=require('../static/activity.js');
+const p=new WorkProgress();p.begin(3);p.accept(1);p.accept(2);p.accept(99,true);
+assert.equal(p.snapshot([{id:1,state:'done'},{id:2,state:'done'}]).complete,false,'upload must finish before completion');
+p.finish();let s=p.snapshot([{id:1,state:'done'},{id:2,state:'running'}]);assert.equal(s.pending,1);assert.equal(s.complete,false);
+s=p.snapshot([{id:1,state:'done'},{id:2,state:'failed'}]);assert.equal(s.complete,true);assert.equal(s.failed,1);assert.equal(s.done,1);assert.equal(p.duplicates,1);
+p.begin(1);p.reject('invalid image');p.finish();assert.equal(p.snapshot([]).complete,true);assert.equal(p.errors.length,1);
+p.begin(1);p.accept(1,true);p.finish();assert.equal(p.snapshot([]).total,0,'duplicates must not create new model tasks');
+p.begin(1);p.accept(42);p.finish();assert.equal(p.snapshot([]).complete,false,'missing or stale poll must not announce completion');
+p.begin(0);p.finish();p.analyze(7);assert.equal(p.snapshot([{id:7,state:'queued'}]).pending,1);assert.equal(p.snapshot([{id:7,state:'done'}]).complete,true);
+console.log('Activity state tests passed: upload, analysis, partial failure, duplicates, missing poll, retry.');
