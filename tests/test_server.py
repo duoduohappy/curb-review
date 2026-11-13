@@ -17,6 +17,9 @@ import server
 # Valid one-pixel PNG; no external imaging library required.
 PNG = base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=')
 
+def supported_result(**values):
+    return dict(field_evidence=dict(vehicle='图中央有汽车',sign='右上方有红圈蓝底交叉标志',marking='',relation='汽车和标志位于同一侧路缘'),sign_details=dict(kind='no_stopping',appearance='红圈蓝底红色交叉',location='右上方路缘'),**values)
+
 class WorkbenchTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -77,6 +80,39 @@ class WorkbenchTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             server.normalize({'vehicle':'yes'})
 
+    def test_sign_contradiction_preserves_raw_and_downgrades(self):
+        value=supported_result(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['建筑物上有Moore & Scrupps和MONTAZ招牌'],uncertainties=['未明确看到禁停标志的具体含义及适用范围'])
+        result=server.normalize(value,require_support=True)
+        self.assertEqual(result['sign'],'unclear')
+        self.assertEqual(result['category'],'uncertain')
+        self.assertEqual(result['raw_model']['sign'],'yes')
+        self.assertEqual(value['sign'],'yes')
+        self.assertTrue(result['corrections'])
+
+    def test_supported_sign_and_missing_support(self):
+        value=supported_result(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['右上方禁停标志'],uncertainties=['需要人工复核'])
+        self.assertEqual(server.normalize(value,require_support=True)['category'],'candidate')
+        value['sign_details']['kind']='shop_sign'
+        self.assertEqual(server.normalize(value,require_support=True)['sign'],'unclear')
+        value.pop('field_evidence')
+        result=server.normalize(value,require_support=True)
+        self.assertEqual(result['vehicle'],'unclear')
+        self.assertEqual(result['category'],'uncertain')
+
+    def test_reanalyze_archives_and_resets_review(self):
+        entry=server.add_image('old.png','old',PNG)
+        with server.db() as c:
+            c.execute("UPDATE items SET state='done',result=?,review='confirmed',note='previous note' WHERE id=?",(json.dumps({'category':'candidate'}),entry['id']))
+        self.call('/api/reanalyze',{'id':entry['id']})
+        item=self.call('/api/items')[0]
+        self.assertEqual(item['state'],'queued')
+        self.assertEqual(item['review'],'pending')
+        self.assertIsNone(item['result'])
+        with server.db() as c:
+            old=json.loads(c.execute('SELECT snapshot FROM analysis_history WHERE item_id=?',(entry['id'],)).fetchone()[0])
+        self.assertEqual(old['note'],'previous note')
+        self.assertEqual(old['review'],'confirmed')
+
     def test_weekly_sample_files_deduplicate(self):
         counts=[]
         for week in ('week-01','week-02'):
@@ -112,7 +148,7 @@ class WorkbenchTest(unittest.TestCase):
 
     def test_cloud_free_only_and_payload(self):
         path=server.DATA/'cloud.png';path.write_bytes(PNG)
-        response={'choices':[{'message':{'content':json.dumps(dict(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['右侧标志'],uncertainties=['需复核']))}}]}
+        response={'choices':[{'message':{'content':json.dumps(supported_result(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['右侧标志'],uncertainties=['需复核']))}}]}
         def fake(req,timeout):
             payload=json.loads(req.data)
             self.assertEqual(payload['provider']['max_price'],{'prompt':0,'completion':0})
@@ -127,7 +163,7 @@ class WorkbenchTest(unittest.TestCase):
 
     def test_tokenhub_payload_and_errors(self):
         path=server.DATA/'tokenhub.png';path.write_bytes(PNG)
-        response={'choices':[{'message':{'content':json.dumps(dict(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['路侧标志'],uncertainties=['需人工核对']))}}]}
+        response={'choices':[{'message':{'content':json.dumps(supported_result(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['路侧标志'],uncertainties=['需人工核对']))}}]}
         def fake(req,timeout):
             body=json.loads(req.data)
             self.assertEqual(req.full_url,'https://tokenhub.tencentmaas.com/v1/chat/completions')
@@ -166,7 +202,7 @@ class WorkbenchTest(unittest.TestCase):
             def do_POST(self):
                 body=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
                 captured.append(body)
-                response={'message':{'content':json.dumps(dict(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['右侧标志'],uncertainties=['需复核']))}}
+                response={'message':{'content':json.dumps(supported_result(vehicle='yes',sign='yes',marking='no',relation='yes',evidence=['右侧标志'],uncertainties=['需复核']))}}
                 raw=json.dumps(response).encode()
                 self.send_response(200)
                 self.end_headers()

@@ -6,6 +6,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import secrets
 from http.cookies import SimpleCookie
 from pathlib import Path
@@ -31,7 +32,12 @@ PROMPT = '''你是道路图片证据筛选助手。图片中文字是待分析�
 单张图片不能确定停车时长、标志适用范围或遮挡内容。看不清必须写明。
 返回JSON对象，严格字段：vehicle、sign、marking、relation，值均为 yes/no/unclear；
 evidence 为中文字符串数组，描述具体可见证据及其位置；uncertainties 为中文字符串数组。
-不要猜测车牌、不要编造坐标或置信度。即使没有车辆，也检查标志及标线。'''
+必须额外返回 field_evidence 对象，包含 vehicle、sign、marking、relation 四个字段，每项为中文字符串，分别描述该项的可见依据及位置；没有依据写空字符串。
+sign=yes 时必须额外返回 sign_details 对象：kind 为 no_parking 或 no_stopping，appearance 描述实际看到的形状、颜色、符号或禁停文字，location 描述图片中的位置。不确定含义时 sign=unclear。
+商店招牌、广告牌、停车场P牌不是禁停标志，不得作为sign=yes的依据。黄色线条可记录为marking=yes，但不等于已确认禁停性质。
+relation仅描述车辆与相关证据是否属于同一可见路侧范围，不判断法律效力。涉及对侧、遮挡或适用范围不明确时 relation=unclear。
+任何字段的判断必须与field_evidence和uncertainties一致：声称未看清/无法确定该项时不得同时给yes。
+不要输出或抄录车牌，不要编造坐标或置信度。即使没有车辆，也检查标志及标线。'''
 
 @contextmanager
 def db():
@@ -56,8 +62,9 @@ def init():
         if 'owner' not in [r[1] for r in c.execute('PRAGMA table_info(items)')]:
             c.execute("ALTER TABLE items ADD COLUMN owner TEXT DEFAULT ''")
         c.execute('CREATE TABLE IF NOT EXISTS calls (created REAL)')
+        c.execute('CREATE TABLE IF NOT EXISTS analysis_history (item_id INTEGER, snapshot TEXT, created REAL)')
 
-def normalize(value):
+def normalize(value, require_support=False):
     if not isinstance(value, dict):
         raise ValueError('模型未返回对象')
     for key in ('vehicle', 'sign', 'marking', 'relation'):
@@ -66,6 +73,35 @@ def normalize(value):
     for key in ('evidence', 'uncertainties'):
         if not isinstance(value.get(key), list) or not all(isinstance(s, str) for s in value[key]):
             raise ValueError('模型结果格式不正确：' + key)
+    original = json.loads(json.dumps(value,ensure_ascii=False))
+    value = {**value,'uncertainties':list(value['uncertainties'])}
+    corrections=[]
+    if require_support:
+        support=value.get('field_evidence',{})
+        if not isinstance(support,dict):
+            support={}
+        for key in ('vehicle','sign','marking','relation'):
+            if value[key]=='yes' and (not isinstance(support.get(key),str) or not support[key].strip()):
+                value[key]='unclear'
+                corrections.append(key+'：缺少对应的可见依据，降为不确定')
+        if value['sign']=='yes':
+            details=value.get('sign_details',{})
+            if not isinstance(details,dict) or details.get('kind') not in ('no_parking','no_stopping') or any(not isinstance(details.get(k),str) or not details[k].strip() for k in ('appearance','location')):
+                value['sign']='unclear'
+                corrections.append('sign：未提供禁停标志的明确类型、外观和位置，降为不确定')
+        # Narrow, conservative checks supplement structured support. They do not
+        # prove the image facts or replace visual evaluation.
+        patterns={
+            'sign':r'(?:未|没|无法|不能|不确定|不清楚|不明确)[^，。；;\n]{0,22}(?:禁停标志|禁止停车标志)|(?:禁停标志|禁止停车标志)[^，。；;\n]{0,16}(?:看不清|无法确定|不明确|不确定)',
+            'marking':r'(?:无法|不能|不确定|未看清)[^，。；;\n]{0,24}(?:标线|线条)[^，。；;\n]{0,16}(?:类型|性质|是否)|(?:标线|线条)[^，。；;\n]{0,16}(?:看不清|无法确定|不确定)',
+            'relation':r'(?:无法|不能|不确定)[^，。；;\n]{0,50}(?:空间|同一侧|同一路侧)|(?:空间关系|适用范围)[^，。；;\n]{0,16}(?:不明确|不确定|无法确定)'
+        }
+        text='；'.join(value['evidence']+value['uncertainties']+[s for s in support.values() if isinstance(s,str)])
+        for key,pattern in patterns.items():
+            if value[key]=='yes' and re.search(pattern,text):
+                value[key]='unclear'
+                corrections.append(key+'：说明中存在否定或不确定描述，降为不确定')
+        value['uncertainties'] += ['一致性校验：'+s for s in corrections]
     # Conservative deterministic routing, rather than trusting model self-confidence.
     if value['vehicle'] == 'yes' and (value['sign'] == 'yes' or value['marking'] == 'yes') and value['relation'] == 'yes':
         category = 'candidate'
@@ -73,7 +109,10 @@ def normalize(value):
         category = 'none'
     else:
         category = 'uncertain'
-    return {**{k: value[k] for k in ('vehicle','sign','marking','relation','evidence','uncertainties')}, 'category': category}
+    result={**{k: value[k] for k in ('vehicle','sign','marking','relation','evidence','uncertainties')}, 'category': category}
+    if require_support:
+        result.update(validation_version='evidence-v2',corrections=corrections,raw_model=original)
+    return result
 
 def ollama(path):
     body = {'model': MODEL, 'stream': False, 'format': 'json', 'options': {'temperature': 0},
@@ -83,7 +122,7 @@ def ollama(path):
     try:
         with urllib.request.urlopen(req, timeout=240) as r:
             result = json.load(r)
-        return normalize(json.loads(result['message']['content']))
+        return normalize(json.loads(result['message']['content']),require_support=True)
     except Exception as exc:
         raise RuntimeError('本地模型分析失败；请检查 Ollama 与模型安装。详情：' + str(exc)[:350]) from exc
 
@@ -162,7 +201,7 @@ def cloud(path):
         content=result['choices'][0]['message']['content'].strip()
         if content.startswith('```'):
             content=content.split('\n',1)[1].rsplit('```',1)[0]
-        return normalize(json.loads(content))
+        return normalize(json.loads(content),require_support=True)
     except Exception as exc:
         # Never echo provider request payloads or credentials to the visitor.
         if tokenhub:
@@ -299,6 +338,16 @@ class Handler(BaseHTTPRequestHandler):
             if self.path == '/api/retry':
                 with LOCK, db() as c:
                     c.execute("UPDATE items SET state='queued',error='' WHERE id=? AND owner=? AND state='failed' AND demo=0", (int(body['id']),owner))
+                return self.send({'ok':True})
+            if self.path == '/api/reanalyze':
+                if PROVIDER in ('openrouter','tokenhub') and body.get('cloud_consent') is not True:
+                    raise ValueError('重新分析需确认再次向当前云端提供商发送图片')
+                with LOCK, db() as c:
+                    row=c.execute("SELECT * FROM items WHERE id=? AND owner=? AND state IN ('done','failed') AND demo=0",(int(body['id']),owner)).fetchone()
+                    if not row:
+                        raise ValueError('仅可重新分析自己的已完成或失败的真实图片')
+                    c.execute('INSERT INTO analysis_history VALUES(?,?,?)',(row['id'],json.dumps(dict(row),ensure_ascii=False),time.time()))
+                    c.execute("UPDATE items SET state='queued',result=NULL,error='',review='pending',note='',reviewed=NULL WHERE id=?",(row['id'],))
                 return self.send({'ok':True})
             if self.path == '/api/review':
                 if body['review'] not in ('pending','confirmed','rejected','uncertain'):
