@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: curb-review-demo
+    runtime: python
+    plan: free
+    buildCommand: python -m compileall -q server.py
+    startCommand: python server.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: AI_PROVIDER
+        value: openrouter
+      - key: PUBLIC_DEMO
+        value: "1"
+      - key: OPENROUTER_MODEL
+        value: openrouter/free
+      - key: AI_DAILY_LIMIT
+        value: "40"

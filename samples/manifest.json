@@ -1,0 +1,230 @@
+[
+  {
+    "filename": "scene-01.png",
+    "name": "清晰禁停标志与车辆",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "60c05d49c9d3addf0e2d42c1e260b6904e86b9aaee73b027f0f794c41559f25c",
+    "result": {
+      "vehicle": "yes",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "yes",
+      "category": "candidate",
+      "evidence": [
+        "车辆与右侧禁停标志处于相邻路侧。"
+      ],
+      "uncertainties": [
+        "需核对适用范围与停车状态。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-02.png",
+    "name": "黄色路侧线与车辆",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "792548ab7af8f8312b16afdf300fcf26d938f59e68860823711040bc262182c2",
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "yes",
+      "relation": "yes",
+      "category": "candidate",
+      "evidence": [
+        "车辆相邻路侧可见连续黄色线条。"
+      ],
+      "uncertainties": [
+        "需确认标线性质与适用规则。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-03.png",
+    "name": "标志被树木遮挡",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "68f414d532ff7b122ef040defc1fd7d025ffef7fd548a29faab975ce3d1a4a79",
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "no",
+      "relation": "unclear",
+      "category": "uncertain",
+      "evidence": [
+        "右侧标志被树木部分遮挡。"
+      ],
+      "uncertainties": [
+        "无法完整辨认标志。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-04.png",
+    "name": "路段没有可见禁停线索",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "a75451e2eab2eb0d5a70038c199917b372443b13ea9eb3bcd375785fb25bb0f4",
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "no",
+      "relation": "unclear",
+      "category": "none",
+      "evidence": [
+        "画面中有车辆，未见相关标志或标线。"
+      ],
+      "uncertainties": [
+        "画外可能存在其他信息。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-05.png",
+    "name": "夜间低照度",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "56547b3ead43964b3082a235407a112c51d0ddcd04c4cedeebc496960d17bd85",
+    "result": {
+      "vehicle": "yes",
+      "sign": "unclear",
+      "marking": "unclear",
+      "relation": "unclear",
+      "category": "uncertain",
+      "evidence": [
+        "夜间图像中仅能辨认车辆轮廓。"
+      ],
+      "uncertainties": [
+        "照度过低，标志和标线无法确认。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-06.png",
+    "name": "标志在道路另一侧",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "a3bda4074a5a8f0bf7d92ad50cdb55d464d0e943c5023521552bde778db5a7e6",
+    "result": {
+      "vehicle": "yes",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "unclear",
+      "category": "uncertain",
+      "evidence": [
+        "禁停标志与车辆分处道路两侧。"
+      ],
+      "uncertainties": [
+        "不能据此确认车辆位于适用范围。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-07.png",
+    "name": "有禁停标志但没有车辆",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "afd81db5115a4817306e87ae59d1675689576eededd0f6dc5ebc336708808fd3",
+    "result": {
+      "vehicle": "no",
+      "sign": "yes",
+      "marking": "no",
+      "relation": "no",
+      "category": "uncertain",
+      "evidence": [
+        "路侧可见禁停标志，图中无车辆。"
+      ],
+      "uncertainties": [
+        "不构成含车辆的候选证据。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-08.png",
+    "name": "停车场指示牌",
+    "batch": "模拟数据 · 第1周",
+    "sha256": "877139fdf3f723060ded69a2599a11bb7be94e23eb8a2498c9a3044402623656",
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "no",
+      "relation": "no",
+      "category": "none",
+      "evidence": [
+        "车辆旁为 P 停车指示牌。"
+      ],
+      "uncertainties": [
+        "不能将停车指示牌当作禁停标志。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-09.png",
+    "name": "雨天模糊标线",
+    "batch": "模拟数据 · 第2周",
+    "sha256": "582d6549065030b5650ce084b0c2feb0f5d893a86c53a05eafa47030b82f319d",
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "unclear",
+      "relation": "unclear",
+      "category": "uncertain",
+      "evidence": [
+        "雨天路侧线条模糊。"
+      ],
+      "uncertainties": [
+        "无法可靠判断标线类型。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-10.png",
+    "name": "多辆车与禁停标志",
+    "batch": "模拟数据 · 第2周",
+    "sha256": "4c1e58f4eeb413509ed1a596a85f7f6ed3169b326043d63d3c476d096a2d88cf",
+    "result": {
+      "vehicle": "yes",
+      "sign": "yes",
+      "marking": "yes",
+      "relation": "yes",
+      "category": "candidate",
+      "evidence": [
+        "右侧禁停标志、黄色线条及相邻车辆同时可见。"
+      ],
+      "uncertainties": [
+        "需逐车核实适用范围。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-11.png",
+    "name": "车辆遮住路侧标线",
+    "batch": "模拟数据 · 第2周",
+    "sha256": "d7812ca7765ad708a3ce4cfdd2901840dcca23a6d1dbe1b9832f89cccc6bcc67",
+    "result": {
+      "vehicle": "yes",
+      "sign": "no",
+      "marking": "unclear",
+      "relation": "unclear",
+      "category": "uncertain",
+      "evidence": [
+        "车辆下方路侧线条被遮挡。"
+      ],
+      "uncertainties": [
+        "无法判定被遮挡部分是否连续。"
+      ]
+    }
+  },
+  {
+    "filename": "scene-12.png",
+    "name": "空路段无禁停线索",
+    "batch": "模拟数据 · 第2周",
+    "sha256": "2f0723239a700ede342eff99b0dbf3772adf76c92a13a799a81cef046594348b",
+    "result": {
+      "vehicle": "no",
+      "sign": "no",
+      "marking": "no",
+      "relation": "no",
+      "category": "none",
+      "evidence": [
+        "画面无车辆、禁停标志或相关标线。"
+      ],
+      "uncertainties": [
+        "仅对应当前视角。"
+      ]
+    }
+  }
+]

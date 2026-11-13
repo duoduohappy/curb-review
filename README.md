@@ -53,4 +53,3 @@ GitHub → Render 的操作见 [DEPLOY_RENDER.md](DEPLOY_RENDER.md)。Render 版
 ## 模拟数据包
 
 首次使用空数据库启动会自动加载 12 张模拟样例。已有数据库可点击“加载流程演示”。包含两周的 PNG 上传文件和预设答案，详见 `samples/README.md`。应用运行不需要 Pillow；仅重新生成程序绘制图片时才需 Pillow。
-

@@ -1,0 +1,2 @@
+# Runtime uses the Python standard library only.
+# Pillow is only needed to regenerate the included synthetic image files.
